@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOHU CRM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f0f8ff;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background-color: #007c59;
+      color: white;
+      padding: 20px 10px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .content {
+      padding: 40px 20px;
+    }
+    .btn {
+      background: #007c59;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: #005f45;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>YOHU CRM</h1>
+    <p>Giải pháp quản lý bán hàng và công nợ tự động bằng AI</p>
+  </header>
+  <div class="content">
+    <h2>Chào mừng bạn đến với hệ thống YOHU</h2>
+    <p>Hệ thống tự động quản lý đơn hàng, xuất nhập tồn, công nợ, hỗ trợ Zalo OA và Google Sheet.</p>
+    <a class="btn" href="https://zalo.me/0339606969" target="_blank">Liên hệ Zalo</a>
+  </div>
+  <footer>
+    © 2025 YOHU. All rights reserved.
+  </footer>
+</body>
+</html>
