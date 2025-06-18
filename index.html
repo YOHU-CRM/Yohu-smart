@@ -608,105 +608,26 @@
         });
     </script>
 
-       <script id="voiceCommandScript">
+    <script id="voiceCommandScript">
         document.addEventListener('DOMContentLoaded', function() {
             const voiceCommandBtn = document.getElementById('voiceCommandBtn');
             const voiceResponse = document.getElementById('voiceResponse');
             const responseText = document.getElementById('responseText');
-
-            // Kiểm tra hỗ trợ SpeechRecognition
+            
+            // Check if browser supports speech recognition
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-            if (SpeechRecognition) {
+            const SpeechSynthesis = window.speechSynthesis;
+            
+            if (SpeechRecognition && voiceCommandBtn) {
                 const recognition = new SpeechRecognition();
-                recognition.lang = 'vi-VN';  // Đảm bảo ngôn ngữ là tiếng Việt
+                recognition.lang = 'vi-VN';
                 recognition.continuous = false;
                 recognition.interimResults = false;
-
+                
                 voiceCommandBtn.addEventListener('click', function() {
                     recognition.start();
                     voiceCommandBtn.innerHTML = '<i class="ri-mic-fill mr-2"></i><span>Đang nghe...</span>';
                 });
-
-                recognition.onresult = function(event) {
-                    const command = event.results[0][0].transcript.toLowerCase();
-                    voiceCommandBtn.innerHTML = '<i class="ri-mic-line mr-2"></i><span>Ra lệnh</span>';
-                    showVoiceResponse('Tôi đã nhận được lệnh rồi ạ, xin đợi giây lát');
-                    
-                    // Xử lý lệnh giọng nói
-                    setTimeout(() => {
-                        processCommand(command);
-                    }, 1500);
-                };
-
-                recognition.onerror = function(event) {
-                    console.error('Speech recognition error:', event.error);
-                    voiceCommandBtn.innerHTML = '<i class="ri-mic-line mr-2"></i><span>Ra lệnh</span>';
-                    showVoiceResponse('Xin lỗi, tôi không nghe rõ. Vui lòng thử lại!');
-                };
-            } else {
-                console.error('SpeechRecognition không được hỗ trợ trên trình duyệt này!');
-                showVoiceResponse('Trình duyệt của bạn không hỗ trợ nhận diện giọng nói.');
-            }
-
-            function processCommand(command) {
-                let response = '';
-                let commandData = {}; // Dữ liệu gửi vào Google Sheets
-
-                if (command.includes('xin chào')) {
-                    response = 'Xin chào! Tôi là Yohu Smart, tôi có thể giúp gì cho bạn?';
-                    commandData = { command: 'xin chào', response: response };
-                } else if (command.includes('thời tiết')) {
-                    response = 'Thời tiết hôm nay tại TP. Hồ Chí Minh là 32°C, trời nắng, độ ẩm 75%.';
-                    commandData = { command: 'thời tiết', response: response };
-                } else {
-                    response = 'Xin lỗi, tôi chưa hiểu yêu cầu của bạn.';
-                    commandData = { command: 'không hiểu', response: response };
-                }
-
-                // Gửi dữ liệu vào Google Sheets
-                sendToGoogleSheet(commandData);
-
-                // Hiển thị phản hồi trên giao diện
-                showVoiceResponse(response);
-                speakResponse(response);
-            }
-
-            function showVoiceResponse(text) {
-                responseText.textContent = text;
-                voiceResponse.style.display = 'block';
-                setTimeout(() => {
-                    voiceResponse.style.display = 'none';
-                }, 30000);
-            }
-
-            function speakResponse(text) {
-                if (window.speechSynthesis) {
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = 'vi-VN';
-                    window.speechSynthesis.speak(utterance);
-                }
-            }
-
-            // Gửi dữ liệu vào Google Sheets qua URL
-            function sendToGoogleSheet(data) {
-                fetch('https://script.google.com/macros/s/AKfycbwtjwZ_VrQ3NvyzHwJBaioUlgM-LPC0-4khzGO51n6pbBiMu0XyBpkmXsqiopKB9wdg/exec', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(result => {
-                    if (result.result === "success") {
-                        console.log('Dữ liệu đã được ghi vào Google Sheets:', result.response);
-                    } else {
-                        console.error('Lỗi khi gửi dữ liệu:', result.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Lỗi:', error);
-                });
-        
                 
                 recognition.onresult = function(event) {
                     const command = event.results[0][0].transcript.toLowerCase();
