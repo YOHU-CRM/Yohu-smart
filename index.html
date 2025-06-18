@@ -3,802 +3,558 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOHU Kế Toán Pro - Giải Pháp Quản Lý Kinh Doanh Đơn Giản</title>
+    <title>Yohu Smart - Trợ lý giọng nói thông minh</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>tailwind.config={theme:{extend:{colors:{primary:'#00A651',secondary:'#F7941D'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <style>
         :where([class^="ri-"])::before { content: "\f3c2"; }
         body {
             font-family: 'Roboto', sans-serif;
         }
-        .hero-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        .floating-btn {
+        .voice-response {
             position: fixed;
-            z-index: 999;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4F46E5;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-        .floating-btn:hover {
-            transform: scale(1.05);
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #4F46E5;
         }
-        .phone-btn {
-            bottom: 90px;
-            right: 20px;
-            background-color: #F7941D;
-        }
-        .mic-btn {
-            bottom: 20px;
-            right: 20px;
-            background-color: #00A651;
-        }
-        .step-item {
+        .custom-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
             position: relative;
         }
-        .step-item:not(:last-child)::after {
+        .custom-checkbox:checked {
+            background-color: #4F46E5;
+            border-color: #4F46E5;
+        }
+        .custom-checkbox:checked::after {
             content: '';
             position: absolute;
-            top: 40px;
-            right: -50%;
-            width: 100%;
-            height: 2px;
-            background-color: #e2e8f0;
-            z-index: -1;
-        }
-        @media (max-width: 768px) {
-            .step-item:not(:last-child)::after {
-                display: none;
-            }
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Floating Buttons -->
-    <a href="tel:0973480488" class="floating-btn phone-btn text-white">
-        <div class="w-10 h-10 flex items-center justify-center">
-            <i class="ri-phone-fill ri-xl"></i>
-        </div>
-    </a>
-    <button id="nut-mic" class="floating-btn mic-btn text-white">
-        <div class="w-10 h-10 flex items-center justify-center">
-            <i class="ri-mic-fill ri-xl"></i>
-        </div>
-    </button>
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                        <span class="font-['Pacifico'] text-white text-xl">Y</span>
-                    </div>
-                    <div>
-                        <span class="font-['Pacifico'] text-primary text-xl">YOHU</span>
-                        <span class="text-secondary font-bold"> KẾ TOÁN PRO</span>
-                    </div>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#" class="text-gray-800 hover:text-primary font-medium">Trang chủ</a>
-                    <a href="#features" class="text-gray-800 hover:text-primary font-medium">Tính năng</a>
-                    <a href="#pricing" class="text-gray-800 hover:text-primary font-medium">Bảng giá</a>
-                    <a href="#contact" class="text-gray-800 hover:text-primary font-medium">Liên hệ</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <a href="#trial" class="hidden md:inline-block bg-primary hover:bg-primary/90 text-white py-2 px-6 !rounded-button whitespace-nowrap font-medium">Dùng thử</a>
-                    
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="md:hidden text-gray-700">
-                        <div class="w-8 h-8 flex items-center justify-center">
-                            <i class="ri-menu-line ri-lg"></i>
-                        </div>
-                    </button>
-                </div>
+    <div id="voiceResponse" class="voice-response">
+        <p class="text-lg font-medium">Tôi đã nhận được lệnh rồi ạ, xin đợi giây lát</p>
+        <p id="responseText" class="mt-2"></p>
+    </div>
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">Yohu Smart</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium">Tính năng</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-primary font-medium">Cách hoạt động</a>
+                <a href="#pricing" class="text-gray-700 hover:text-primary font-medium">Bảng giá</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Liên hệ</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="voiceCommandBtn" class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                    <i class="ri-mic-line mr-2"></i>
+                    <span>Ra lệnh</span>
+                </button>
+                <button class="md:hidden w-10 h-10 flex items-center justify-center" id="mobileMenuBtn">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
             </div>
-            
-            <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
-                <nav class="flex flex-col space-y-3">
-                    <a href="#" class="text-gray-800 hover:text-primary font-medium py-2">Trang chủ</a>
-                    <a href="#features" class="text-gray-800 hover:text-primary font-medium py-2">Tính năng</a>
-                    <a href="#pricing" class="text-gray-800 hover:text-primary font-medium py-2">Bảng giá</a>
-                    <a href="#contact" class="text-gray-800 hover:text-primary font-medium py-2">Liên hệ</a>
-                    <a href="#trial" class="bg-primary hover:bg-primary/90 text-white py-2 px-4 !rounded-button whitespace-nowrap font-medium text-center">Dùng thử</a>
-                </nav>
+        </div>
+        <div id="mobileMenu" class="md:hidden bg-white shadow-md absolute w-full left-0 top-full hidden">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium py-2">Tính năng</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-primary font-medium py-2">Cách hoạt động</a>
+                <a href="#pricing" class="text-gray-700 hover:text-primary font-medium py-2">Bảng giá</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium py-2">Liên hệ</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 hero-pattern"></div>
-        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 text-white mb-10 md:mb-0">
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">GIẢI PHÁP QUẢN LÝ KINH DOANH & XNT DỄ DÀNG</h1>
-                    <p class="text-lg md:text-xl mb-8">Quản lý bán hàng kế toán đơn giản, dễ sử dụng không cần có nghiệp vụ toán</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#trial" class="bg-white text-primary hover:bg-gray-100 py-3 px-8 !rounded-button whitespace-nowrap font-medium text-center">Dùng thử miễn phí</a>
-                        <a href="#demo" class="bg-secondary hover:bg-secondary/90 text-white py-3 px-8 !rounded-button whitespace-nowrap font-medium text-center">Xem demo</a>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://readdy.ai/api/search-image?query=Professional%20business%20woman%20using%20tablet%20with%20financial%20charts%20and%20graphs%2C%20modern%20office%20background%2C%20accounting%20software%20interface%2C%20green%20and%20white%20color%20scheme%2C%20high%20quality%20professional&width=600&height=400&seq=123&orientation=landscape" alt="YOHU Kế Toán Pro" class="rounded-lg shadow-xl object-cover object-top w-full">
+    <section class="relative w-full overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20smart%20home%20assistant%20interface%20with%20blue%20gradient%20background%2C%20showing%20voice%20command%20visualization%20waves%2C%20smart%20home%20control%20icons%2C%20and%20a%20clean%20minimalist%20design.%20The%20left%20side%20has%20a%20smooth%20transition%20to%20a%20lighter%20background%20for%20text%20content&width=1600&height=800&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/30"></div>
+        <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
+            <div class="max-w-2xl text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Trợ lý giọng nói thông minh cho ngôi nhà của bạn</h1>
+                <p class="text-lg md:text-xl mb-8">Yohu Smart giúp bạn điều khiển ngôi nhà thông minh, quản lý lịch trình và trả lời mọi câu hỏi chỉ bằng giọng nói của bạn.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium whitespace-nowrap">Dùng thử miễn phí</button>
+                    <button class="bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-button font-medium whitespace-nowrap">Xem demo</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-white">
+    <section id="features" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Tính Năng Nổi Bật</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">YOHU Lite SMART là giải pháp quản lý bán hàng và cho hộ kinh doanh nhỏ, giúp người không sợ công nghệ cũng có thể sử dụng.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tính năng nổi bật</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Yohu Smart mang đến trải nghiệm thông minh và tiện lợi với các tính năng hiện đại nhất.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <div class="w-8 h-8 flex items-center justify-center text-primary">
-                            <i class="ri-google-fill ri-2x"></i>
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-home-4-line text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Quản lý trên Google Sheet</h3>
-                    <p class="text-gray-600 text-center">Hệ thống hoạt động hoàn toàn trên Google Sheet, Google Drive và Fchat miễn phí, không cần thiết lập, không cần tài khoản doanh nghiệp Google.</p>
+                    <h3 class="text-xl font-semibold mb-3">Điều khiển nhà thông minh</h3>
+                    <p class="text-gray-600">Điều khiển đèn, nhiệt độ, âm thanh và các thiết bị thông minh khác trong nhà chỉ bằng giọng nói.</p>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <div class="w-8 h-8 flex items-center justify-center text-primary">
-                            <i class="ri-message-3-fill ri-2x"></i>
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-calendar-line text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Tích hợp chat tự động</h3>
-                    <p class="text-gray-600 text-center">Kết nối Fchat để trả lời tin nhắn tự động. Có thể tích hợp Zalo OA, Messenger nếu mở rộng cho doanh nghiệp của bạn.</p>
+                    <h3 class="text-xl font-semibold mb-3">Quản lý lịch trình</h3>
+                    <p class="text-gray-600">Đặt lịch hẹn, nhắc nhở và quản lý công việc hàng ngày bằng các lệnh giọng nói đơn giản.</p>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <div class="w-8 h-8 flex items-center justify-center text-primary">
-                            <i class="ri-mic-fill ri-2x"></i>
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-question-answer-line text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Báo cáo giọng nói</h3>
-                    <p class="text-gray-600 text-center">Hệ thống tích hợp giọng nói qua Web App, giúp người dùng hỏi báo cáo bằng câu lệnh như "doanh thu hôm nay" hoặc "tồn kho hàng A còn bao nhiêu".</p>
+                    <h3 class="text-xl font-semibold mb-3">Trả lời thông minh</h3>
+                    <p class="text-gray-600">Nhận câu trả lời chính xác cho mọi câu hỏi từ thời tiết, tin tức đến kiến thức chung.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-music-2-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Giải trí đa phương tiện</h3>
+                    <p class="text-gray-600">Phát nhạc, podcast và nội dung video từ các dịch vụ phổ biến chỉ bằng lệnh giọng nói.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-shield-check-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Bảo mật thông minh</h3>
+                    <p class="text-gray-600">Tích hợp với hệ thống an ninh nhà thông minh, giúp bạn kiểm soát camera và cảnh báo.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-customer-service-2-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Hỗ trợ 24/7</h3>
+                    <p class="text-gray-600">Luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi với khả năng học hỏi và cải thiện liên tục.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="py-16 bg-gray-50">
+    <section id="how-it-works" class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Cách Sử Dụng Đơn Giản</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Chỉ ba bước đơn giản để bắt đầu sử dụng YOHU Lite SMART cho doanh nghiệp của bạn.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Cách hoạt động</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Yohu Smart hoạt động đơn giản và hiệu quả, mang đến trải nghiệm người dùng tuyệt vời.</p>
             </div>
             
-            <div class="flex flex-col md:flex-row justify-center items-center md:items-start space-y-8 md:space-y-0 md:space-x-4 lg:space-x-8">
-                <!-- Step 1 -->
-                <div class="step-item flex flex-col items-center max-w-xs">
-                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">1</div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Sao chép mẫu tệp</h3>
-                    <p class="text-gray-600 text-center">Mở file mẫu và tạo bản sao cho doanh nghiệp của bạn trên Google Drive.</p>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="step-item flex flex-col items-center max-w-xs">
-                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">2</div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Cấp quyền truy cập</h3>
-                    <p class="text-gray-600 text-center">Cấp quyền cho ứng dụng để kết nối với Google Sheet và các dịch vụ khác.</p>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="step-item flex flex-col items-center max-w-xs">
-                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">3</div>
-                    <h3 class="text-xl font-bold mb-3 text-center">Bắt đầu sử dụng</h3>
-                    <p class="text-gray-600 text-center">Ghi đơn hàng, tạo PDF hóa đơn, theo dõi tồn kho và xem báo cáo ngay lập tức.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Voice Assistant Demo Section -->
-    <section id="demo" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
-                    <h2 class="text-3xl font-bold mb-6">Trợ Lý Giọng Nói Thông Minh</h2>
-                    <p class="text-gray-600 mb-6">Hệ thống tích hợp giọng nói qua Web App, giúp người dùng hỏi báo cáo bằng câu lệnh đơn giản. Bạn có thể hỏi:</p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span>"Doanh thu hôm nay là bao nhiêu?"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span>"Tồn kho hàng A còn bao nhiêu?"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span>"Báo cáo doanh thu tháng này"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span>"Lợi nhuận quý này là bao nhiêu?"</span>
-                        </li>
-                    </ul>
-                    <button id="demo-mic-button" class="bg-primary hover:bg-primary/90 text-white py-3 px-8 !rounded-button whitespace-nowrap font-medium flex items-center">
-                        <div class="w-6 h-6 flex items-center justify-center mr-2">
-                            <i class="ri-mic-fill"></i>
-                        </div>
-                        Thử ngay
-                    </button>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                        <div class="bg-white rounded p-4 mb-4 min-h-[200px] shadow-inner">
-                            <div id="demo-response" class="text-gray-700">
-                                <p class="mb-2 font-medium">Trợ lý YOHU:</p>
-                                <p>Xin chào! Tôi là trợ lý ảo của YOHU Kế Toán Pro. Bạn có thể hỏi tôi về báo cáo doanh thu, tồn kho, hoặc các thông tin kinh doanh khác.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center bg-white rounded-full shadow-inner p-2">
-                            <input type="text" id="demo-text-input" placeholder="Hoặc nhập câu hỏi của bạn tại đây..." class="flex-1 border-none outline-none px-4 py-2 text-gray-700 bg-transparent">
-                            <button id="demo-send-button" class="bg-primary text-white p-2 rounded-full">
-                                <div class="w-6 h-6 flex items-center justify-center">
-                                    <i class="ri-send-plane-fill"></i>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Benefits Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Lợi Ích Cho Doanh Nghiệp</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">YOHU Lite SMART giúp hộ kinh doanh kiểm soát doanh thu, tồn kho và chi phí một cách dễ dàng mà không cần kỹ thuật.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Benefit 1 -->
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <div class="w-6 h-6 flex items-center justify-center text-primary">
-                            <i class="ri-time-line ri-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Tiết kiệm thời gian</h3>
-                    <p class="text-gray-600">Tự động hóa các quy trình quản lý, giúp bạn tập trung vào phát triển kinh doanh.</p>
-                </div>
-                
-                <!-- Benefit 2 -->
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <div class="w-6 h-6 flex items-center justify-center text-primary">
-                            <i class="ri-secure-payment-line ri-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Không cần đầu tư</h3>
-                    <p class="text-gray-600">Sử dụng hoàn toàn miễn phí với Google Sheet và các công cụ sẵn có.</p>
-                </div>
-                
-                <!-- Benefit 3 -->
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <div class="w-6 h-6 flex items-center justify-center text-primary">
-                            <i class="ri-user-line ri-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Dễ dàng sử dụng</h3>
-                    <p class="text-gray-600">Không cần kiến thức kỹ thuật hay nghiệp vụ kế toán chuyên sâu.</p>
-                </div>
-                
-                <!-- Benefit 4 -->
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <div class="w-6 h-6 flex items-center justify-center text-primary">
-                            <i class="ri-lock-line ri-lg"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Bảo mật dữ liệu</h3>
-                    <p class="text-gray-600">Dữ liệu được lưu trên Drive cá nhân của bạn, hoàn toàn riêng tư và an toàn.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-<section id="pricing" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Bảng Giá</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Chúng tôi cung cấp các gói dịch vụ phù hợp với nhu cầu của mọi doanh nghiệp.</p>
-        </div>
-        
-        <div class="flex flex-wrap justify-center items-center space-x-8">
-            <!-- Free Plan -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full max-w-xs">
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Miễn Phí</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">0đ</span>
-                        <span class="text-gray-500 ml-2">/tháng</span>
-                    </div>
-                    <p class="text-gray-600">Phù hợp cho hộ kinh doanh nhỏ mới bắt đầu</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Quản lý đơn hàng cơ bản</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Báo cáo doanh thu hàng ngày</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tạo PDF hóa đơn</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-gray-300 mr-2 mt-0.5">
-                                <i class="ri-close-line"></i>
-                            </div>
-                            <span class="text-gray-400">Tích hợp chat tự động</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-gray-300 mr-2 mt-0.5">
-                                <i class="ri-close-line"></i>
-                            </div>
-                            <span class="text-gray-400">Trợ lý giọng nói</span>
-                        </li>
-                    </ul>
-                    <a href="#trial" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng ngay</a>
-                </div>
-            </div>
-            
-            <!-- Standard Plan -->
-            <div class="bg-white border-2 border-primary rounded-lg shadow-xl hover:shadow-2xl transition-shadow w-full max-w-xs relative">
-                <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium">Phổ biến</div>
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Standard</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">299.000đ</span>
-                        <span class="text-gray-500 ml-2">/Thanh toán một lần</span>
-                    </div>
-                    <p class="text-gray-600">Phù hợp cho hộ kinh doanh hoạt động ổn định</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tất cả tính năng của gói Miễn phí</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tích hợp chat tự động</span>
-                        </li>   
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Báo cáo chi tiết theo tháng/quý</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Hỗ trợ kỹ thuật ưu tiên</span>
-                        </li>
-                    </ul>
-                    <a href="#trial" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng thử 14 ngày</a>
-                </div>
-            </div>
-
-            <!-- Gói Pro -->
-            <div class="bg-white p-6 rounded-lg shadow-md transform scale-105 border-2 border-primary relative">
-                <div class="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Phổ biến</div>
-                
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Gói Pro</h3>
-                    <div class="text-3xl font-bold text-primary mb-2">599.000đ</div>
-                    <p class="text-gray-500 text-sm">Thanh toán một lần</p>
-                </div>
-                
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Quản lý đơn hàng đầy đủ</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Xuất hóa đơn PDF tùy chỉnh</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Báo cáo kinh doanh chi tiết</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tích hợp Fchat cơ bản</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Trợ lý giọng nói</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-gray-300 mt-1">
-                            <i class="ri-close-line"></i>
-                        </div>
-                        <span class="ml-2 text-gray-400">Hỗ trợ kỹ thuật 24/7</span>
-                    </li>
-                </ul>
-                
-                <a href="#dung-thu" class="block w-full bg-primary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Đăng ký ngay</a>
-            </div>
-
-            <!-- Gói Smart -->
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Gói Smart</h3>
-                    <div class="text-3xl font-bold text-primary mb-2">999.000đ</div>
-                    <p class="text-gray-500 text-sm">Thanh toán một lần</p>
-                </div>
-                
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tất cả tính năng của gói Pro</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tích hợp Fchat nâng cao</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Báo cáo phân tích kinh doanh</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Cảnh báo tồn kho và công nợ</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tùy chỉnh báo cáo và hóa đơn</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Hỗ trợ kỹ thuật 24/7</span>
-                    </li>
-                </ul>
-                
-                <a href="#dung-thu" class="block w-full bg-secondary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-orange-600 transition whitespace-nowrap">Đăng ký ngay</a>
-            </div>
-
-            <!-- Enterprise Plan -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full max-w-xs">
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Doanh Nghiệp</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">Liên hệ</span>
-                    </div>
-                    <p class="text-gray-600">Giải pháp tùy chỉnh cho doanh nghiệp lớn</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tất cả tính năng của gói Smart</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tích hợp với hệ thống hiện có</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tùy chỉnh theo yêu cầu</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Hỗ trợ 24/7</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Đào tạo nhân viên</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="block text-center bg-gray-800 hover:bg-gray-700 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Liên hệ ngay</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- CTA Section -->
-    <section id="trial" class="py-16 bg-primary text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">Bắt Đầu Sử Dụng YOHU Lite SMART Ngay Hôm Nay</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Chỉ ba bước đơn giản: mở file, tạo bản sao, cấp quyền – là có thể vận hành toàn bộ quy trình bán hàng hiện đại ngay lập tức.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="bg-white text-primary hover:bg-gray-100 py-3 px-8 !rounded-button whitespace-nowrap font-medium">Dùng thử miễn phí</a>
-                <a href="#contact" class="bg-secondary hover:bg-secondary/90 text-white py-3 px-8 !rounded-button whitespace-nowrap font-medium">Liên hệ tư vấn</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
-                    <h2 class="text-3xl font-bold mb-6">Liên Hệ Với Chúng Tôi</h2>
-                    <p class="text-gray-600 mb-8">Hãy liên hệ với chúng tôi nếu bạn có bất kỳ câu hỏi nào về YOHU Lite SMART hoặc cần tư vấn giải pháp phù hợp cho doanh nghiệp của bạn.</p>
-                    
-                    <div class="space-y-4 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="mb-12">
                         <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                                <div class="w-5 h-5 flex items-center justify-center text-primary">
-                                    <i class="ri-phone-line"></i>
-                                </div>
-                            </div>
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 flex-shrink-0">1</div>
                             <div>
-                                <h3 class="font-medium">Điện thoại</h3>
-                                <p class="text-gray-600">0973 480 488</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                                <div class="w-5 h-5 flex items-center justify-center text-primary">
-                                    <i class="ri-mail-line"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">Email</h3>
-                                <p class="text-gray-600">yohu-ketoansmart@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                                <div class="w-5 h-5 flex items-center justify-center text-primary">
-                                    <i class="ri-map-pin-line"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">Địa chỉ</h3>
-                                <p class="text-gray-600">Nhân Dục - Hiến Nam - Hưng Yên - Việt Nam</p>
+                                <h3 class="text-xl font-semibold mb-2">Kích hoạt bằng từ khóa</h3>
+                                <p class="text-gray-600">Chỉ cần nói "Hey Yohu" để kích hoạt trợ lý và bắt đầu đưa ra lệnh hoặc câu hỏi của bạn.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-700">
-                                <i class="ri-facebook-fill"></i>
+                    <div class="mb-12">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 flex-shrink-0">2</div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Xử lý ngôn ngữ tự nhiên</h3>
+                                <p class="text-gray-600">Hệ thống AI tiên tiến của chúng tôi hiểu ngôn ngữ tự nhiên và ngữ cảnh của câu hỏi hoặc lệnh của bạn.</p>
                             </div>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-700">
-                                <i class="ri-youtube-fill"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 flex-shrink-0">3</div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Thực hiện hành động</h3>
+                                <p class="text-gray-600">Yohu thực hiện lệnh của bạn, điều khiển các thiết bị, tìm kiếm thông tin hoặc thực hiện các tác vụ khác.</p>
                             </div>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-700">
-                                <i class="ri-linkedin-fill"></i>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 flex-shrink-0">4</div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Phản hồi thông minh</h3>
+                                <p class="text-gray-600">Nhận phản hồi bằng giọng nói rõ ràng và tự nhiên, cùng với hiển thị trực quan khi cần thiết.</p>
                             </div>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-700">
-                                <i class="ri-twitter-fill"></i>
-                            </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="md:w-1/2">
-                    <form class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                        <div class="mb-4">
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://readdy.ai/api/search-image?query=A%20modern%20smart%20home%20assistant%20interface%20showing%20voice%20command%20visualization%20with%20blue%20wave%20patterns%2C%20smart%20home%20control%20dashboard%20with%20minimalist%20design%2C%20Vietnamese%20text%20interface%20elements%2C%20and%20a%20clean%20user-friendly%20layout%20with%20soft%20lighting%20effects&width=600&height=800&seq=2&orientation=portrait" alt="Yohu Smart Assistant Interface" class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Bảng giá</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Chọn gói dịch vụ phù hợp với nhu cầu của bạn và trải nghiệm sức mạnh của Yohu Smart.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Cơ bản</h3>
+                        <div class="text-3xl font-bold mb-1">499.000 đ<span class="text-gray-500 text-base font-normal">/tháng</span></div>
+                        <p class="text-gray-600">Dành cho cá nhân</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Điều khiển thiết bị cơ bản</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Hỗ trợ 1 phòng</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Trả lời câu hỏi cơ bản</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Phát nhạc và podcast</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-close-line mr-2"></i>
+                            <span>Tích hợp camera an ninh</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-close-line mr-2"></i>
+                            <span>Hỗ trợ đa ngôn ngữ</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-white border border-primary text-primary hover:bg-primary/5 py-2 rounded-button font-medium whitespace-nowrap">Chọn gói</button>
+                </div>
+                
+                <div class="bg-white border-2 border-primary rounded-lg shadow-lg p-6 transform md:-translate-y-4">
+                    <div class="bg-primary text-white text-center py-1 px-4 rounded-full text-sm font-medium w-fit mx-auto mb-4">Phổ biến nhất</div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Tiêu chuẩn</h3>
+                        <div class="text-3xl font-bold mb-1">899.000 đ<span class="text-gray-500 text-base font-normal">/tháng</span></div>
+                        <p class="text-gray-600">Dành cho gia đình</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Điều khiển thiết bị nâng cao</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Hỗ trợ 5 phòng</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Trả lời câu hỏi nâng cao</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Phát nhạc, podcast và video</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Tích hợp camera an ninh</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-close-line mr-2"></i>
+                            <span>Hỗ trợ đa ngôn ngữ</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-primary hover:bg-primary/90 text-white py-2 rounded-button font-medium whitespace-nowrap">Chọn gói</button>
+                </div>
+                
+                <div class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Cao cấp</h3>
+                        <div class="text-3xl font-bold mb-1">1.499.000 đ<span class="text-gray-500 text-base font-normal">/tháng</span></div>
+                        <p class="text-gray-600">Dành cho biệt thự & văn phòng</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Điều khiển thiết bị không giới hạn</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Hỗ trợ không giới hạn phòng</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Trả lời câu hỏi chuyên sâu</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Giải trí đa phương tiện cao cấp</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Tích hợp camera an ninh nâng cao</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-primary mr-2"></i>
+                            <span>Hỗ trợ đa ngôn ngữ</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-white border border-primary text-primary hover:bg-primary/5 py-2 rounded-button font-medium whitespace-nowrap">Chọn gói</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Khách hàng nói gì về chúng tôi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hàng nghìn khách hàng đã tin tưởng và hài lòng với Yohu Smart.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Yohu Smart đã thay đổi hoàn toàn cách tôi tương tác với ngôi nhà của mình. Mọi thứ trở nên dễ dàng và tiện lợi hơn rất nhiều. Tôi đặc biệt thích tính năng điều khiển ánh sáng và nhiệt độ."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Nguyễn Thanh Tùng</h4>
+                            <p class="text-gray-500 text-sm">Hà Nội</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Là một người bận rộn, Yohu Smart giúp tôi quản lý lịch trình và nhắc nhở công việc hiệu quả. Khả năng hiểu tiếng Việt của nó thực sự ấn tượng, không còn rào cản ngôn ngữ như các sản phẩm khác."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Trần Minh Phương</h4>
+                            <p class="text-gray-500 text-sm">TP. Hồ Chí Minh</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Chúng tôi sử dụng Yohu Smart cho văn phòng công ty và nó đã cải thiện đáng kể hiệu quả làm việc. Tính năng bảo mật và kiểm soát truy cập rất hữu ích, đặc biệt là khả năng tích hợp với hệ thống camera."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Lê Hoàng Nam</h4>
+                            <p class="text-gray-500 text-sm">Đà Nẵng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Liên hệ với chúng tôi</h2>
+                    <p class="text-gray-600 mb-8">Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div>
                             <label for="name" class="block text-gray-700 font-medium mb-2">Họ và tên</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" required>
                         </div>
                         
-                        <div class="mb-4">
+                        <div>
                             <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" required>
                         </div>
                         
-                        <div class="mb-4">
+                        <div>
                             <label for="phone" class="block text-gray-700 font-medium mb-2">Số điện thoại</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" required>
                         </div>
                         
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Nội dung</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Tin nhắn</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:border-primary" required></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium">Gửi tin nhắn</button>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="consent" name="consent" class="custom-checkbox" required>
+                            <label for="consent" class="ml-2 text-gray-700">Tôi đồng ý với <a href="#" class="text-primary hover:underline">Điều khoản sử dụng</a> và <a href="#" class="text-primary hover:underline">Chính sách bảo mật</a></label>
+                        </div>
+                        
+                        <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium whitespace-nowrap">Gửi tin nhắn</button>
                     </form>
                 </div>
+                
+                <div class="rounded-lg overflow-hidden h-full">
+                    <img src="https://readdy.ai/api/search-image?query=A%20modern%20customer%20support%20center%20with%20Vietnamese%20staff%20wearing%20headsets%2C%20helping%20clients%20with%20smart%20home%20technology%2C%20blue%20accent%20colors%20in%20the%20office%20design%2C%20multiple%20computer%20screens%20showing%20smart%20home%20interfaces%2C%20and%20a%20professional%20yet%20friendly%20atmosphere&width=600&height=800&seq=3&orientation=portrait" alt="Yohu Smart Customer Support" class="w-full h-full object-cover">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white pt-12 pb-6">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                            <span class="font-['Pacifico'] text-primary text-xl">Y</span>
-                        </div>
-                        <div>
-                            <span class="font-['Pacifico'] text-white text-xl">YOHU</span>
-                            <span class="text-secondary font-bold"> KẾ TOÁN PRO</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-4">Giải pháp quản lý kinh doanh và kế toán đơn giản, dễ sử dụng cho hộ kinh doanh nhỏ.</p>
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">Yohu Smart</a>
+                    <p class="text-gray-400 mb-4">Trợ lý giọng nói thông minh hàng đầu Việt Nam, mang đến trải nghiệm sống hiện đại và tiện nghi.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <div class="w-8 h-8 flex items-center justify-center">
-                                <i class="ri-facebook-fill ri-lg"></i>
-                            </div>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <div class="w-8 h-8 flex items-center justify-center">
-                                <i class="ri-youtube-fill ri-lg"></i>
-                            </div>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-twitter-fill"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <div class="w-8 h-8 flex items-center justify-center">
-                                <i class="ri-linkedin-fill ri-lg"></i>
-                            </div>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-instagram-fill"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <div class="w-8 h-8 flex items-center justify-center">
-                                <i class="ri-twitter-fill ri-lg"></i>
-                            </div>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-youtube-fill"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">Sản phẩm</h3>
+                    <h4 class="text-lg font-semibold mb-4">Liên kết nhanh</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">YOHU Lite SMART</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">YOHU Kế Toán Pro</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">YOHU CRM</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">YOHU Inventory</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Tính năng</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors">Cách hoạt động</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Bảng giá</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Liên hệ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">Hỗ trợ</h3>
+                    <h4 class="text-lg font-semibold mb-4">Hỗ trợ</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Trung tâm hỗ trợ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Tài liệu hướng dẫn</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Video hướng dẫn</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Câu hỏi thường gặp</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Trung tâm hỗ trợ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Hướng dẫn sử dụng</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Câu hỏi thường gặp</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Chính sách bảo hành</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Liên hệ hỗ trợ</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4">Liên hệ</h3>
+                    <h4 class="text-lg font-semibold mb-4">Liên hệ</h4>
                     <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-2">
-                                <i class="ri-phone-line"></i>
-                            </div>
-                            <span class="text-gray-400">0973 480 488</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-2">
-                                <i class="ri-mail-line"></i>
-                            </div>
-                            <span class="text-gray-400">yohu-ketoansmart@gmail.com</span>
-                        </li>
                         <li class="flex items-start">
-                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-2 mt-1">
-                                <i class="ri-map-pin-line"></i>
-                            </div>
-                            <span class="text-gray-400">Nhân Dục - Hiến Nam - Hưng Yên - Việt Nam</span>
+                            <i class="ri-map-pin-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line mr-2"></i>
+                            <span class="text-gray-400">+84 28 1234 5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line mr-2"></i>
+                            <span class="text-gray-400">info@yohusmart.vn</span>
                         </li>
                     </ul>
+                    
+                    <h4 class="text-lg font-semibold mt-6 mb-4">Đăng ký nhận tin</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Email của bạn" class="px-4 py-2 bg-gray-800 border-none rounded-l focus:outline-none focus:ring-1 focus:ring-primary text-white">
+                        <button class="bg-primary hover:bg-primary/90 px-4 py-2 rounded-r whitespace-nowrap">Đăng ký</button>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 YOHU Kế Toán Pro. Tất cả các quyền được bảo lưu.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Điều khoản sử dụng</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Chính sách bảo mật</a>
-                    </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Yohu Smart. Tất cả các quyền được bảo lưu.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Điều khoản sử dụng</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script id="mobile-menu-script">
+    <script id="mobileMenuScript">
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            mobileMenuButton.addEventListener('click', function() {
+            mobileMenuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
             
@@ -812,88 +568,152 @@
         });
     </script>
 
-    <script id="voice-recognition-script">
+    <script id="contactFormScript">
         document.addEventListener('DOMContentLoaded', function() {
-            const nutMic = document.getElementById('nut-mic');
-            const demoMicButton = document.getElementById('demo-mic-button');
-            const demoResponse = document.getElementById('demo-response');
-            const demoTextInput = document.getElementById('demo-text-input');
-            const demoSendButton = document.getElementById('demo-send-button');
+            const contactForm = document.getElementById('contactForm');
             
-            // Check if SpeechRecognition is supported
-            if ('webkitSpeechRecognition' in window) {
-                const nhanDang = new webkitSpeechRecognition();
-                nhanDang.lang = 'vi-VN';
-                nhanDang.continuous = false;
-                
-                nutMic.addEventListener('click', function() {
-                    nutMic.classList.add('animate-pulse');
-                    nhanDang.start();
-                });
-                
-                demoMicButton.addEventListener('click', function() {
-                    demoMicButton.classList.add('animate-pulse');
-                    nhanDang.start();
-                });
-                
-                nhanDang.onresult = function(sukien) {
-                    const lenh = sukien.results[0][0].transcript;
-                    xuLyLenhGiongNoi(lenh);
-                };
-                
-                nhanDang.onend = function() {
-                    nutMic.classList.remove('animate-pulse');
-                    demoMicButton.classList.remove('animate-pulse');
-                };
-            } else {
-                nutMic.addEventListener('click', function() {
-                    alert('Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói. Vui lòng sử dụng Chrome hoặc Edge.');
-                });
-                
-                demoMicButton.addEventListener('click', function() {
-                    alert('Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói. Vui lòng sử dụng Chrome hoặc Edge.');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const formDataObj = {};
+                    formData.forEach((value, key) => {
+                        formDataObj[key] = value;
+                    });
+                    
+                    // Send data to Google Sheet
+                    fetch('https://script.google.com/macros/s/AKfycbwtjwZ_VrQ3NvyzHwJBaioUlgM-LPC0-4khzGO51n6pbBiMu0XyBpkmXsqiopKB9wdg/exec', {
+                        method: 'POST',
+                        body: JSON.stringify(formDataObj),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            showVoiceResponse('Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể!');
+                            contactForm.reset();
+                        } else {
+                            showVoiceResponse('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại sau!');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showVoiceResponse('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại sau!');
+                    });
                 });
             }
+        });
+    </script>
+
+    <script id="voiceCommandScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceCommandBtn = document.getElementById('voiceCommandBtn');
+            const voiceResponse = document.getElementById('voiceResponse');
+            const responseText = document.getElementById('responseText');
             
-            // Handle text input
-            demoSendButton.addEventListener('click', function() {
-                const lenh = demoTextInput.value.trim();
-                if (lenh) {
-                    xuLyLenhGiongNoi(lenh);
-                    demoTextInput.value = '';
-                }
-            });
+            // Check if browser supports speech recognition
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const SpeechSynthesis = window.speechSynthesis;
             
-            demoTextInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const lenh = demoTextInput.value.trim();
-                    if (lenh) {
-                        xuLyLenhGiongNoi(lenh);
-                        demoTextInput.value = '';
-                    }
-                }
-            });
-            
-            // Process voice commands
-            function xuLyLenhGiongNoi(lenh) {
-                lenh = lenh.toLowerCase();
+            if (SpeechRecognition && voiceCommandBtn) {
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'vi-VN';
+                recognition.continuous = false;
+                recognition.interimResults = false;
                 
+                voiceCommandBtn.addEventListener('click', function() {
+                    recognition.start();
+                    voiceCommandBtn.innerHTML = '<i class="ri-mic-fill mr-2"></i><span>Đang nghe...</span>';
+                });
+                
+                recognition.onresult = function(event) {
+                    const command = event.results[0][0].transcript.toLowerCase();
+                    voiceCommandBtn.innerHTML = '<i class="ri-mic-line mr-2"></i><span>Ra lệnh</span>';
+                    
+                    // Initial response
+                    showVoiceResponse('Tôi đã nhận được lệnh rồi ạ, xin đợi giây lát');
+                    
+                    // Process command after a short delay
+                    setTimeout(() => {
+                        processCommand(command);
+                    }, 1500);
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error:', event.error);
+                    voiceCommandBtn.innerHTML = '<i class="ri-mic-line mr-2"></i><span>Ra lệnh</span>';
+                    showVoiceResponse('Xin lỗi, tôi không nghe rõ. Vui lòng thử lại!');
+                };
+            }
+            
+            function processCommand(command) {
                 let response = '';
                 
-                if (lenh.includes('doanh thu') && lenh.includes('hôm nay')) {
-                    response = '<p class="mb-2 font-medium">Trợ lý YOHU:</p><p>Doanh thu hôm nay (17/06/2025) là 4.850.000đ, tăng 12% so với cùng kỳ tuần trước.</p>';
-                } else if (lenh.includes('tồn kho') && lenh.includes('hàng a')) {
-                    response = '<p class="mb-2 font-medium">Trợ lý YOHU:</p><p>Hàng Bồn cầu 190 hiện còn tồn kho 25 đơn vị, giá trị 12.500.000đ. Mức tồn kho an toàn là 20 đơn vị.</p>';
-                } else if (lenh.includes('báo cáo') && lenh.includes('tháng')) {
-                    response = '<p class="mb-2 font-medium">Trợ lý YOHU:</p><p>Báo cáo tháng 6/2025 (đến ngày 17/06):<br>- Doanh thu: 78.500.000đ<br>- Chi phí: 45.200.000đ<br>- Lợi nhuận: 33.300.000đ<br>- Tỷ suất lợi nhuận: 42.4%</p>';
-                } else if (lenh.includes('lợi nhuận') && lenh.includes('quý')) {
-                    response = '<p class="mb-2 font-medium">Trợ lý YOHU:</p><p>Lợi nhuận Quý 2/2025 (đến ngày 17/06) là 98.750.000đ, tăng 15% so với cùng kỳ năm trước.</p>';
+                // Simple command processing
+                if (command.includes('xin chào') || command.includes('hello')) {
+                    response = 'Xin chào! Tôi là Yohu Smart, tôi có thể giúp gì cho bạn?';
+                } else if (command.includes('thời tiết')) {
+                    response = 'Thời tiết hôm nay tại TP. Hồ Chí Minh là 32°C, trời nắng, độ ẩm 75%.';
+                } else if (command.includes('bật đèn') || command.includes('mở đèn')) {
+                    response = 'Đã bật đèn theo yêu cầu của bạn.';
+                } else if (command.includes('tắt đèn')) {
+                    response = 'Đã tắt đèn theo yêu cầu của bạn.';
+                } else if (command.includes('nhiệt độ')) {
+                    response = 'Nhiệt độ hiện tại trong phòng là 26°C.';
+                } else if (command.includes('phát nhạc') || command.includes('nghe nhạc')) {
+                    response = 'Đang phát nhạc từ danh sách yêu thích của bạn.';
+                } else if (command.includes('dừng nhạc') || command.includes('tắt nhạc')) {
+                    response = 'Đã dừng phát nhạc.';
+                } else if (command.includes('lịch') || command.includes('lịch trình')) {
+                    response = 'Hôm nay bạn có cuộc họp lúc 14:00 và buổi hẹn khám sức khỏe lúc 17:30.';
+                } else if (command.includes('tin tức') || command.includes('báo')) {
+                    response = 'Tin tức hôm nay: Việt Nam đạt tăng trưởng GDP 6.5% trong quý 2 năm 2025.';
+                } else if (command.includes('giá')) {
+                    response = 'Gói dịch vụ Yohu Smart bắt đầu từ 499.000đ/tháng cho gói Cơ bản.';
+                } else if (command.includes('liên hệ')) {
+                    response = 'Bạn có thể liên hệ với chúng tôi qua số điện thoại +84 28 1234 5678 hoặc email info@yohusmart.vn';
                 } else {
-                    response = '<p class="mb-2 font-medium">Trợ lý YOHU:</p><p>Xin lỗi, tôi không hiểu yêu cầu của bạn. Bạn có thể hỏi về "doanh thu hôm nay", "tồn kho hàng A", "báo cáo tháng này" hoặc "lợi nhuận quý này".</p>';
+                    response = 'Xin lỗi, tôi chưa hiểu yêu cầu của bạn. Bạn có thể nói rõ hơn được không?';
                 }
                 
-                demoResponse.innerHTML = response;
+                showVoiceResponse(response);
+                speakResponse(response);
             }
+            
+            function showVoiceResponse(text) {
+                responseText.textContent = text;
+                voiceResponse.style.display = 'block';
+                
+                // Hide after 30 seconds
+                setTimeout(() => {
+                    voiceResponse.style.display = 'none';
+                }, 30000);
+            }
+            
+            function speakResponse(text) {
+                if (SpeechSynthesis) {
+                    // Stop any current speech
+                    SpeechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'vi-VN';
+                    
+                    // Find Vietnamese voice if available
+                    const voices = SpeechSynthesis.getVoices();
+                    const vietnameseVoice = voices.find(voice => voice.lang.includes('vi'));
+                    if (vietnameseVoice) {
+                        utterance.voice = vietnameseVoice;
+                    }
+                    
+                    SpeechSynthesis.speak(utterance);
+                }
+            }
+            
+            // Global function to show voice response
+            window.showVoiceResponse = showVoiceResponse;
         });
     </script>
 </body>
