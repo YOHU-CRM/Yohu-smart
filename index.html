@@ -608,30 +608,6 @@
         });
     </script>
 
-    <script id="voiceCommandScript">
-        function speakResponse(text) {
-    if (SpeechSynthesis) {
-        // Dừng mọi âm thanh đang phát
-        SpeechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'vi-VN'; // Đặt ngôn ngữ là tiếng Việt
-        
-        // Tìm giọng nói tiếng Việt nếu có
-        const voices = SpeechSynthesis.getVoices();
-        const vietnameseVoice = voices.find(voice => voice.lang.includes('vi'));
-
-        if (vietnameseVoice) {
-            utterance.voice = vietnameseVoice; // Sử dụng giọng nói tiếng Việt
-        } else {
-            // Nếu không có giọng nói tiếng Việt, có thể sử dụng giọng mặc định
-            console.warn('Giọng tiếng Việt không có sẵn, sử dụng giọng mặc định.');
-        }
-        
-        SpeechSynthesis.speak(utterance);
-    }
-}
-
         <script id="voiceCommandScript">
     document.addEventListener('DOMContentLoaded', function() {
         const voiceCommandBtn = document.getElementById('voiceCommandBtn');
