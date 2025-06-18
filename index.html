@@ -337,188 +337,185 @@
         </div>
     </section>
 
- <!-- Pricing Section -->
+<!-- Pricing Section -->
 <section id="pricing" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Bảng Giá</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Chúng tôi cung cấp các gói dịch vụ phù hợp với nhu cầu của mọi doanh nghiệp.</p>
-        </div>
-
-        <!-- Sử dụng flexbox để chia đều các mục và căn chỉnh chúng vào một hàng ngang -->
-        <div class="flex flex-wrap justify-between gap-8">
-            <!-- Free Plan -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full md:w-1/5 mb-8">
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Miễn Phí</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">0đ</span>
-                        <span class="text-gray-500 ml-2">/tháng</span>
-                    </div>
-                    <p class="text-gray-600">Phù hợp cho hộ kinh doanh nhỏ mới bắt đầu</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Quản lý đơn hàng cơ bản</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Báo cáo doanh thu hàng ngày</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tạo PDF hóa đơn</span>
-                        </li>
-                    </ul>
-                    <a href="#trial" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng ngay</a>
-                </div>
-            </div>
-
-            <!-- Standard Plan -->
-            <div class="bg-white border-2 border-primary rounded-lg shadow-xl hover:shadow-2xl transition-shadow w-full md:w-1/5 mb-8 relative">
-                <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium">Phổ biến</div>
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Standard</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">299.000đ</span>
-                        <span class="text-gray-500 ml-2">/Thanh toán một lần</span>
-                    </div>
-                    <p class="text-gray-600">Phù hợp cho hộ kinh doanh hoạt động ổn định</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tất cả tính năng của gói Miễn phí</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tích hợp chat tự động</span>
-                        </li>   
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Báo cáo chi tiết theo tháng/quý</span>
-                        </li>
-                    </ul>
-                    <a href="#trial" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng thử 14 ngày</a>
-                </div>
-            </div>
-
-            <!-- Pro Plan -->
-            <div class="bg-white p-6 rounded-lg shadow-md transform scale-105 border-2 border-primary relative">
-                <div class="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Phổ biến</div>
-                
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Gói Pro</h3>
-                    <div class="text-3xl font-bold text-primary mb-2">599.000đ</div>
-                    <p class="text-gray-500 text-sm">Thanh toán một lần</p>
-                </div>
-                
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Quản lý đơn hàng đầy đủ</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Xuất hóa đơn PDF tùy chỉnh</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Báo cáo kinh doanh chi tiết</span>
-                    </li>
-                </ul>
-                
-                <a href="#dung-thu" class="block w-full bg-primary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Đăng ký ngay</a>
-            </div>
-
-            <!-- Smart Plan -->
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-semibold mb-2">Gói Smart</h3>
-                    <div class="text-3xl font-bold text-primary mb-2">999.000đ</div>
-                    <p class="text-gray-500 text-sm">Thanh toán một lần</p>
-                </div>
-                
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tất cả tính năng của gói Pro</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Tích hợp Fchat nâng cao</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <span class="ml-2">Báo cáo phân tích kinh doanh</span>
-                    </li>
-                </ul>
-                
-                <a href="#dung-thu" class="block w-full bg-secondary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-orange-600 transition whitespace-nowrap">Đăng ký ngay</a>
-            </div>
-
-            <!-- Enterprise Plan -->
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full md:w-1/5 mb-8">
-                <div class="p-6 border-b">
-                    <h3 class="text-xl font-bold mb-2">Gói Doanh Nghiệp</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl font-bold">Liên hệ</span>
-                    </div>
-                    <p class="text-gray-600">Giải pháp tùy chỉnh cho doanh nghiệp lớn</p>
-                </div>
-                <div class="p-6">
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tất cả tính năng của gói Smart</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tích hợp với hệ thống hiện có</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <span>Tùy chỉnh theo yêu cầu</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="block text-center bg-gray-800 hover:bg-gray-700 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Liên hệ ngay</a>
-                </div>
-            </div>
-        </div>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold mb-4">Bảng Giá</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Chúng tôi cung cấp các gói dịch vụ phù hợp với nhu cầu của mọi doanh nghiệp.
+      </p>
     </div>
+
+    <!-- Dòng chia đều 5 gói -->
+    <div class="flex flex-wrap justify-between gap-6">
+      <!-- Gói Miễn Phí -->
+      <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full md:w-1/5 mb-8">
+        <div class="p-6 border-b">
+          <h3 class="text-xl font-bold mb-2">Gói Miễn Phí</h3>
+          <div class="flex items-end mb-4">
+            <span class="text-4xl font-bold">0đ</span>
+            <span class="text-gray-500 ml-2">/tháng</span>
+          </div>
+          <p class="text-gray-600">Phù hợp cho hộ kinh doanh nhỏ mới bắt đầu</p>
+        </div>
+        <div class="p-6">
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Quản lý đơn hàng cơ bản</span>
+            </li>
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Báo cáo doanh thu hàng ngày</span>
+            </li>
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tạo PDF hóa đơn</span>
+            </li>
+          </ul>
+          <a href="#trial" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng ngay</a>
+        </div>
+      </div>
+
+      <!-- Gói Standard -->
+      <div class="bg-white border-2 border-primary rounded-lg shadow-xl hover:shadow-2xl transition-shadow w-full md:w-1/5 mb-8 relative">
+        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium">Phổ biến</div>
+        <div class="p-6 border-b">
+          <h3 class="text-xl font-bold mb-2">Gói Standard</h3>
+          <div class="flex items-end mb-4">
+            <span class="text-4xl font-bold">299.000đ</span>
+            <span class="text-gray-500 ml-2">/Thanh toán một lần</span>
+          </div>
+          <p class="text-gray-600">Phù hợp cho hộ kinh doanh hoạt động ổn định</p>
+        </div>
+        <div class="p-6">
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tất cả tính năng của gói Miễn phí</span>
+            </li>
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tích hợp chat tự động</span>
+            </li>   
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Báo cáo chi tiết theo tháng/quý</span>
+            </li>
+          </ul>
+          <a href="#trial" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Dùng thử 14 ngày</a>
+        </div>
+      </div>
+
+      <!-- Gói Pro -->
+      <div class="bg-white p-6 rounded-lg shadow-md transform scale-105 border-2 border-primary relative w-full md:w-1/5 mb-8">
+        <div class="absolute top-0 right-0 bg-primary text-white px-3 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Phổ biến</div>
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-semibold mb-2">Gói Pro</h3>
+          <div class="text-3xl font-bold text-primary mb-2">599.000đ</div>
+          <p class="text-gray-500 text-sm">Thanh toán một lần</p>
+        </div>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Quản lý đơn hàng đầy đủ</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Xuất hóa đơn PDF tùy chỉnh</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Báo cáo kinh doanh chi tiết</span>
+          </li>
+        </ul>
+        <a href="#dung-thu" class="block w-full bg-primary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-blue-700 transition whitespace-nowrap">Đăng ký ngay</a>
+      </div>
+
+      <!-- Gói Smart -->
+      <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition w-full md:w-1/5 mb-8">
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-semibold mb-2">Gói Smart</h3>
+          <div class="text-3xl font-bold text-primary mb-2">999.000đ</div>
+          <p class="text-gray-500 text-sm">Thanh toán một lần</p>
+        </div>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Tất cả tính năng của gói Pro</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Tích hợp Fchat nâng cao</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex items-center justify-center text-primary mt-1">
+              <i class="ri-check-line"></i>
+            </div>
+            <span class="ml-2">Báo cáo phân tích kinh doanh</span>
+          </li>
+        </ul>
+        <a href="#dung-thu" class="block w-full bg-secondary text-white text-center px-4 py-2 !rounded-button font-medium hover:bg-orange-600 transition whitespace-nowrap">Đăng ký ngay</a>
+      </div>
+
+      <!-- Gói Doanh Nghiệp -->
+      <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full md:w-1/5 mb-8">
+        <div class="p-6 border-b">
+          <h3 class="text-xl font-bold mb-2">Gói Doanh Nghiệp</h3>
+          <div class="flex items-end mb-4">
+            <span class="text-4xl font-bold">Liên hệ</span>
+          </div>
+          <p class="text-gray-600">Giải pháp tùy chỉnh cho doanh nghiệp lớn</p>
+        </div>
+        <div class="p-6">
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tất cả tính năng của gói Smart</span>
+            </li>
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tích hợp với hệ thống hiện có</span>
+            </li>
+            <li class="flex items-start">
+              <div class="w-6 h-6 flex items-center justify-center text-primary mr-2 mt-0.5">
+                <i class="ri-check-line"></i>
+              </div>
+              <span>Tùy chỉnh theo yêu cầu</span>
+            </li>
+          </ul>
+          <a href="#contact" class="block text-center bg-gray-800 hover:bg-gray-700 text-white py-3 px-6 !rounded-button whitespace-nowrap font-medium w-full">Liên hệ ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
